@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to the Chess Game</h1>
+    <p>This is a simple chess game interface.</p>
+    <div id="board-container">
+        <!-- Chess board will be generated here -->
+    </div>
+    <script>
+
+        function drawBoard(){
+            const board = document.getElementById('board-container')
+                let board_array = []
+            for(let i = 0; i < 8; i++)
+            {         
+                board_array[i] = [];
+                for(let j = 0; j < 8; j++)
+                {   
+                    const square = document.createElement('div') 
+                    if((i+j)% 2 ===0){
+                        board_array[i][j] = `[${i}-${j}] = CREAM`
+                        square.classList.add('bg-02')
+                    }else{
+                        board_array[i][j] = `[${i}-${j}] =  GREEN`
+                        square.classList.add('bg-01')
+                    }
+                    board.appendChild(square)
+                }
+            }
+        }
+        drawBoard()
+        console.log(board_array)
+        // Função pra pegar todas as peças do tabuleiro
+
+        // Função para mover uma peça
+
+        // Função para verificar xeque-mate
+
+    </script>
+</body>
+</html>
