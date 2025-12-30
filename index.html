@@ -12,23 +12,76 @@
     <div id="board-container">
         <!-- Chess board will be generated here -->
     </div>
+
+
     <script>
+        // PEÇAS BRANCAS
+        const white_king = '/pieces/whites/whiete-king.svg'
+        const white_bishop = '/pieces/whites/white-bishop.svg'
+        const white_knight = '/pieces/whites/white-knight.svg'
+        const white_pawn = '/pieces/whites/white-pawn.svg'
+        const white_queen = '/pieces/whites/white-queen.svg'
+        const white_rook = '/pieces/whites/white-rook.svg'
+        
+        // PEÇAS NEGRAS
+
+        const black_king = '/pieces/blacks/black-king.svg'
+        const black_bishop = '/pieces/blacks/black-bishop.svg'
+        const black_knight = '/pieces/blacks/black-knight.svg'
+        const black_pawn = '/pieces/blacks/black-pawn.svg'
+        const black_queen = '/pieces/blacks/black-queen.svg'
+        const black_rook = '/pieces/blacks/black-rook.svg'
+
+
+        let board_array = []
+
+        let whites_array = []
+        let blacks_array = []
+        
+        let chess_pieces = {
+            position : [],
+            moves: [],
+            piece: ''
+        }
 
         function drawBoard(){
             const board = document.getElementById('board-container')
-                let board_array = []
+            let chars_array = ['A','B','C','D','E','F','G','H']
             for(let i = 0; i < 8; i++)
             {         
                 board_array[i] = [];
                 for(let j = 0; j < 8; j++)
                 {   
                     const square = document.createElement('div') 
+                    const img = document.createElement('img')
+
                     if((i+j)% 2 ===0){
                         board_array[i][j] = `[${i}-${j}] = CREAM`
                         square.classList.add('bg-02')
+                        square.textContent = `${i}-${chars_array[j]}`
+                        if(i === 0 && j === 0){
+                             chess_pieces = {
+                                 position: [i][j],
+                                 moves: [],
+                                 piece: white_rook
+                             }
+                            whites_array.push(chess_pieces)
+                            img.classList.add('pieces')
+                            img.src = white_rook
+                            square.appendChild(img)
+
+                        }
+                        
                     }else{
                         board_array[i][j] = `[${i}-${j}] =  GREEN`
                         square.classList.add('bg-01')
+                        square.textContent = `${i}-${chars_array[j]}`
+
+                        if(i === 0 && j === 1){
+                            img.classList.add('pieces')
+                            img.src = white_knight
+                            square.appendChild(img)
+                        }
                     }
                     board.appendChild(square)
                 }
@@ -36,8 +89,13 @@
         }
         drawBoard()
         console.log(board_array)
+        console.log('--------------------------------')
+        console.log(whites_array)
         // Função pra pegar todas as peças do tabuleiro
+        // function loadingPieces(){
+        //     const piece = document.createElement('img')
 
+        // }
         // Função para mover uma peça
 
         // Função para verificar xeque-mate
